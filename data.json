@@ -1,0 +1,68 @@
+{
+    "id": "synlab_v2.json",
+    "log_extension": {
+        "m1": "active-logs-test",
+        "p2": "k2",
+        "p3": "k3"
+    },
+    "payload": {
+        "defaults": {
+            "description": "Ping https://{{{ baseURL }}}{{{ path }}} from {{{ pop }}}",
+            "repeat": "2m",
+            "timeout": "30s",
+            "url": "https://{{{ baseURL }}}{{{ path }}}",
+            "retries": 2,
+            "expectStatus": 200,
+            "har": true,
+            "labels": {
+                "sla": "yes",
+                "TIP_crn_service_name": "your_crn",
+                "TIP_tribe_name": "your_tribe_name",
+                "TIP_severity": 2,
+                "TIP_situation": "",
+                "TIP_short_description": "Ping https://{{{ baseURL }}}{{{ path }}}",
+                "TIP_long_description": ""
+            },
+            "tokens": {
+                "iamProd": {
+                    "source": "IAM",
+                    "iamUrl": "https://iam.cloud.ibm.com",
+                    "apiKey": "{{{ secrets.tenant_api_key_prod }}}"
+                },
+                "iamTest": {
+                    "source": "IAM",
+                    "iamUrl": "https://iam.test.cloud.ibm.com",
+                    "apiKey": "{{{ secrets.tenant_api_key_test }}}"
+                }
+            },
+            "token": "{{{ tokens.iamProd }}}"
+        },
+        "configurations": {
+            "prod": {
+                "baseURL": "cloud.ibm.com",
+                "pops": [
+                    "Dallas",
+                    "Frankfurt",
+                    "London",
+                    "Sydney",
+                    "Tokyo",
+                    "WashingtonDC",
+                    "Toronto"
+                ]
+            },
+            "test": {
+                "repeat": "5m",
+                "labels": {
+                    "sla": "no",
+                    "TIP_severity": 3
+                },
+                "baseURL": "test.cloud.ibm.com",
+                "token": "{{{ tokens.iamTest }}}",
+                "pops": [
+                    "Dallas",
+                    "London"
+                ]
+            }
+        }
+    }
+}

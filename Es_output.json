@@ -1,0 +1,23 @@
+{
+    "id": "synlab_v2.json",   
+    "description": "Ping https://test.cloud.ibm.com/status from",
+    "repeat": "2m",
+    "timeout": "30s",
+    "url": "https://test.cloud.ibm.com/status",
+    "retries": 2,
+    "expectStatus": 200,
+    "har": false,
+    "labels": {
+        "sla": "yes",
+        "TIP_crn_service_name": "your_crn",
+        "TIP_tribe_name": "your_tribe_name",
+        "TIP_severity": 2,
+        "TIP_situation": "",
+        "TIP_short_description": "Ping https://{{{ baseURL }}}{{{ path }}}",
+        "TIP_long_description": ""
+    },
+    "pops" : [
+        "Dallas",
+        "London"
+    ]
+}
